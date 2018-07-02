@@ -9,7 +9,7 @@ except ImportError:
 
 setup(
     name='BackupMega',
-    version='0.0.1',
+    version='0.0.2',
     author='Nurlan Melis (NMelis)',
     author_email='melis.zhoroev@gmail.com',
     packages=find_packages(),
