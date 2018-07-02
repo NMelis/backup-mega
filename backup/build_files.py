@@ -1,7 +1,6 @@
 import logging
 import os
 import zipfile
-import uuid
 from os import path
 from zipfile import ZipFile
 
@@ -13,7 +12,10 @@ def zip_folder(folder_paths: list, output_path: str):
     in the archive). Empty subfolders will be included in the archive
     as well.
     """
-    with zipfile.ZipFile(output_path, 'a', zipfile.ZIP_DEFLATED) as zip_file:
+    os.system('rm -rf {}/*'.format(os.path.dirname(output_path)))
+    if not os.path.exists('/tmp/backup'):
+        os.system('mkdir /tmp/backup')
+    with zipfile.ZipFile(output_path, 'w', zipfile.ZIP_DEFLATED) as zip_file:
         for folder_path in folder_paths:
             if not os.path.exists(folder_path):
                 continue
@@ -45,17 +47,18 @@ def zip_folder(folder_paths: list, output_path: str):
                 logging.critical(message)
                 continue
             except zipfile.BadZipfile as message:
+                print("errr")
                 logging.error(message)
                 continue
         logging.debug("'%s' created successfully." % output_path)
     return output_path
 
 
-def zipping_files(paths: list) -> None:
+def zipping_files(paths: list, output_path) -> str:
     backups_foleds = []
     with ZipFile('backup-mega.zip', 'w') as tmp_zip:
         for path_foled in paths:
             if path.exists(path_foled):
                 backups_foleds.append(path_foled)
 
-    zip_folder(backups_foleds, '/tmp/backup-mega-{}.zip'.format(str(uuid.uuid4())[0:8]))
+    return zip_folder(backups_foleds, output_path)
