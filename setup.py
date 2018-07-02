@@ -16,7 +16,7 @@ setup(
     url='https://github.com/ProgMeli/backup-mega',
     license='LICENSE.txt',
     description='Backup system and push backup zip to storage mega.nz.',
-    long_description=open(join(dirname(__file__), 'README.txt')).read(),
+    long_description=open(join(dirname(__file__), 'README')).read(),
     entry_points={
         'console_scripts':
             ['backup = backup.main:backup']
