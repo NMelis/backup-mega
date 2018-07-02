@@ -13,7 +13,7 @@ setup(
     author='Nurlan Melis (NMelis)',
     author_email='melis.zhoroev@gmail.com',
     packages=find_packages(),
-    url='',
+    url='https://github.com/ProgMeli/backup-mega',
     license='LICENSE.txt',
     description='Backup system and push backup zip to storage mega.nz.',
     long_description=open(join(dirname(__file__), 'README.txt')).read(),
